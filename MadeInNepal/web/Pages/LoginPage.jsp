@@ -44,11 +44,9 @@
                 <a class="nav-link" href="#">Link</a>
               </li>
              </ul>
-  
-            <form class="d-flex">
             
               <button class="btn btn-success" type="submit">Login</button>
-            </form>
+            
           </div>
         </div>
       </nav>

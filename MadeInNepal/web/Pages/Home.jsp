@@ -39,7 +39,7 @@
   </head>
   <body>
 
-    <%include file="nav.jsp"%>
+    <%include file="navbar.jsp"%>
 
     <section style="min-height: 50vh">
       <!-- flex wrapper -->
