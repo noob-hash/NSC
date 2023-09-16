@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- 
+    Document   : navbar.jsp
+    Created on : Sep 16, 2023, 10:19:16 AM
+    Author     : Subin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 
     <title>Home page</title>
     <style>
@@ -32,67 +39,64 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-      <div class="container-fluid">
-        <!-- logo -->
-        <a class="navbar-brand " href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <%include file="nav.jsp"%>
 
-        <!-- naglinks and button -->
-        <div class="collapse navbar-collapse d-flex justify-content-center align-item-right" id="navbarSupportedContent">
-
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-           </ul>
-
-          <form class="d-flex">
-          
-            <button class="btn btn-success" type="submit">Login</button>
+    <section style="min-height: 50vh">
+      <!-- flex wrapper -->
+      <div
+        class="container-fluid"
+        style="
+          position: relative;
+          min-height: 70vh;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+        "
+      >
+        <!-- left -->
+        <div
+          style="
+            width: 50%;
+            margin-left: 8%;
+            margin-bottom: 80px;
+            padding-inline: 40px;
+          "
+        >
+          <div class="hero-section">
+            <h1>
+              A heritage in care. <br />
+              A reputation in <br />excellence.
+            </h1>
+          </div>
+          <span
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
+            error esse reprehenderit illum aut dicta sed at corporis odio
+            repellat.</span
+          >
+          <form class="d-flex" style="margin-top: 30px;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
           </form>
         </div>
+
+        <!-- right -->
+        <div
+          style="
+            background-color: antiquewhite;
+            width: 50%;
+            height: 100vh;
+            overflow: hidden;
+          "
+        >
+          <img
+            src="https://www.myclinic.ie/images/banner_gp.png"
+            alt=""
+            style="object-fit: contain"
+          />
+        </div>
+
       </div>
-    </nav>
-
-    <section class="mb-5 d-flex justify-content-between" style="min-height: 80vh; width: 100%">
-      <!-- Leeft section -->
-      <div class="flex-1" style="height: 100vh; width: 100%;">
-          
-        
-        <div class="container">
-          <div class="row" style="height: 100vh;">
-            <!-- left section -->
-            <div class=" bg-success col-md-6 d-flex flex-column justify-content-center align-item-center">
-              <h3 >Welcome to the world of coding!</h3><br/>
-              <form action="/search" method="get">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Search" name="q">
-                  <button class="btn btn-primary" type="submit">Search</button>
-                </div>
-              </form>
-            </div>
-
-            <!-- right section -->
-          <div class="col-md-6">
-                <div class="input-group mb-3">
-                  image goes here
-                </div>
-            </div>
-          </div>
-      </div> 
-
     </section>
 
     <!-- item listing -->
@@ -113,8 +117,7 @@
           </div>
      
           <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="/PageController?page=HospitalDetails.jsp" class="card-link">See more</a>
           </div>
         </div>
         <div class="card p-4" style="flex: 1;">
@@ -125,8 +128,7 @@
           </div>
      
           <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="/PageController?page=HospitalDetails.jsp" class="card-link">See more</a>
           </div>
         </div>
         <div class="card p-4" style="flex: 1;">
@@ -137,8 +139,7 @@
           </div>
      
           <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="/PageController?page=HospitalDetails.jsp" class="card-link">See more</a>
           </div>
         </div>
         <div class="card p-4" style="flex: 1;">
@@ -149,17 +150,14 @@
           </div>
      
           <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="/PageController?page=HospitalDetails.jsp" class="card-link">See more</a>
           </div>
         </div>
-       
-
-      </div>
+     </div>
       
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
