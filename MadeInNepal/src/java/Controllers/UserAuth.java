@@ -96,6 +96,14 @@ public class UserAuth extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Registration.jsp");
             dispatcher.include(request, response);
         }
+
+        if (page.equalsIgnoreCase("RegisterUser")) {
+            String salt = new SecureAuth().generateSalt();
+            Users user = new Users(request.getParameter("username"),new SecureAuth().createHash(request.getParameter("password"), salt),salt,Users.Role.valueOf(request.getParameter("role")),false);
+            new UserServices().addUser(user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Registration.jsp");
+            dispatcher.include(request, response);
+        }
     }
 
     /**
