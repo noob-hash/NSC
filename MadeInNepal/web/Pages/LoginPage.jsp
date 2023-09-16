@@ -16,10 +16,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+    </style>
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <div class="container-fluid">
           <!-- logo -->
           <a class="navbar-brand " href="#">Navbar</a>
@@ -44,38 +52,78 @@
                 <a class="nav-link" href="#">Link</a>
               </li>
              </ul>
+  
+            <form class="d-flex">
             
               <button class="btn btn-success" type="submit">Login</button>
-            
+            </form>
           </div>
         </div>
       </nav>
 
-    <div class="container">
-      <form class="row g-3">
-        <div class="col-md-12">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        
-        <div class="col-md-12">
-            <label for="inputPassword4" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword4">
+      <div class="container">
+        <div class="row py-5 mt-4 align-items-center">
+          <!-- For Demo Purpose -->
+          <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img
+              src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg"
+              alt=""
+              class="img-fluid mb-3 d-none d-md-block"
+            />
+            <h1>Log in</h1>
+            <p class="font-italic text-muted mb-0">Enter your data.</p>
           </div>
-
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
+  
+          <!-- Registeration Form -->
+          <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="">
+              <div class="row">
+               
+  
+                <!-- First Name -->
+                <div class="col-md-12">
+                  <label for="inputName" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputName"
+                    name="username"
+                  />
+                </div>
+  
+                <div class="col-md-12 mb-4">
+                  <label for="inputAddress" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputAddress"
+                    name="password"
+                  />
+                </div>
+    
+                <!-- Button to trigger the modal -->
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
+                  
+                >
+                  Log in
+                </button>
+  
+                <!-- Already Registered -->
+                <div class="text-center w-auto">
+                  <p class="text-muted font-weight-bold">
+                    Haven't Registered?
+                    <a href="#" class="text-primary ml-2">Sign up</a>
+                  </p>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>  
-    </div>
+      </div>
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
