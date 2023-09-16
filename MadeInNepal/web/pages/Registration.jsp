@@ -53,48 +53,62 @@
         </div>
       </nav>
 
-    <div class="container">
-      <form class="row g-3">
-        <div class="col-md-12">
-          <label for="inputName" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="inputName">
-        </div>
-        
-        <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Phone</label>
-            <input type="phone" class="form-control" id="inputPhone">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail">
-          </div>
-
+      <div class="container">
+        <form class="row g-3">
           <div class="col-md-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress">
+            <select class="custom-select" name="role">
+              <option selected>Open this select menu</option>
+              <option value="O">Organization</option>
+              <option value="H">Hospital</option>
+              <option value="I">Individual</option>
+            </select>
           </div>
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Upload photo</label>
-            <input class="form-control" type="file" id="formFile">
+          <div class="col-md-12">
+            <label for="inputName" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputName" name="username">
           </div>
-
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
+          
+          <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Phone</label>
+              <input type="phone" class="form-control" id="inputPhone" name="phone">
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail" name="email">
+            </div>
+  
+            <div class="col-md-12">
+              <label for="inputAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" id="inputAddress" name="address">
+            </div>
+  
+            <div class="col-md-12">
+              <label for="inputAddress" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputAddress" name="password">
+            </div>
+  
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Upload photo</label>
+              <input class="form-control" type="file" id="formFile" name="photo">
+            </div>
+  
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>  
-
-    <div class="my-3">Already have an account?
-        <a href="#">Sign in</a>
-    </div>
-    </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+      </form>  
+  
+      <div class="my-3">Already have an account?
+          <a href="#">Sign in</a>
+      </div>
+      </div>
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
