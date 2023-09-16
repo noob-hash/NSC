@@ -54,7 +54,7 @@
       </nav>
 
     <div class="container">
-      <form class="row g-3">
+      <form class="row g-3"  action="UserAuth?page=RegisterUser">
         <div class="col-md-12">
           <label for="inputName" class="form-label">Full Name</label>
           <input type="text" class="form-control" id="inputName">
