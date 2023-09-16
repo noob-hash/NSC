@@ -1,12 +1,7 @@
-<%-- 
-    Document   : Home.jsp
-    Created on : Sep 16, 2023, 10:19:16 AM
-    Author     : Subin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
-    Document   : navbar.jsp
+    Document   : Home.jsp
     Created on : Sep 16, 2023, 10:19:16 AM
     Author     : Subin
 --%>
