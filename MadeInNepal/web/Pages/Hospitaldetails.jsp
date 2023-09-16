@@ -117,6 +117,7 @@ Author : Subin --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
             <form
               class="row d-flex align-items-end border bg-white p-3 shadow rounded"
             >
+            <input type="hidden" name="hospital_id">
               <div class="form-group col-3">
                 <label for="exampleInputEmail1">Date</label>
                 <input
