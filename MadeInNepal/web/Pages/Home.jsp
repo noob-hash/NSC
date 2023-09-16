@@ -96,17 +96,17 @@
     </section>
 
     <!-- item listing -->
-    <section class="container">
+    <section class="container mb-4">
       <div class="mb-4">
-        <h2>Available Equipments</h2>
+        <h3>Available Hospital</h3>
       </div>
 
       <!-- flex wrap =container to list the card -->
       <div class="flex-container d-flex justify-content-between gap-4">
         
         <!-- card items -->
-        <div class="card" style="flex: 1;">
-          <img src="https://m.media-amazon.com/images/I/81ny2C5hUGL.jpg" class="card-img-top" alt="..." style="object-fit: fill;">
+        <div class="card p-4" style="flex: 1;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/PAHS_Official_Seal.png" class="card-img-top" alt="..." style="object-fit: fill;">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -117,8 +117,8 @@
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
-        <div class="card" style="flex: 1;">
-          <img src="https://m.media-amazon.com/images/I/81ny2C5hUGL.jpg" class="card-img-top" alt="..." style="object-fit: fill;">
+        <div class="card p-4" style="flex: 1;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/PAHS_Official_Seal.png" class="card-img-top" alt="..." style="object-fit: fill;">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -129,8 +129,8 @@
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
-        <div class="card" style="flex: 1;">
-          <img src="https://m.media-amazon.com/images/I/81ny2C5hUGL.jpg" class="card-img-top" alt="..." style="object-fit: fill;">
+        <div class="card p-4" style="flex: 1;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/PAHS_Official_Seal.png" class="card-img-top" alt="..." style="object-fit: fill;">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -141,8 +141,8 @@
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
-        <div class="card" style="flex: 1;">
-          <img src="https://m.media-amazon.com/images/I/81ny2C5hUGL.jpg" class="card-img-top" alt="..." style="object-fit: fill;">
+        <div class="card p-4" style="flex: 1;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/PAHS_Official_Seal.png" class="card-img-top" alt="..." style="object-fit: fill;">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -153,13 +153,11 @@
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
+       
 
-        
-        
       </div>
       
     </section>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
