@@ -66,7 +66,7 @@
       </div>
     </nav>
 
-    <section class="mb-5 d-flex justify-content-between" style="min-height: 80vh; width: 100&">
+    <section class="mb-5 d-flex justify-content-between" style="min-height: 80vh; width: 100%">
       <!-- Leeft section -->
       <div class="flex-1" style="height: 100vh; width: 100%;">
           
