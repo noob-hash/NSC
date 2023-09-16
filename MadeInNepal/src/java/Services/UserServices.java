@@ -160,11 +160,28 @@ public class UserServices {
 
     public void deleteUser(int identifier) {
         try {
-            String stmt = "Update user set deleted = 1 where user_id = ?";
+            String stmt = "Update user_auth set deleted = 1 where user_id = ?";
             
             Connection con = new DatabaseConn().ConnectionEstablishment();
             PreparedStatement ps = con.prepareStatement(stmt);
             ps.setInt(1, identifier);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addUser(Users user) {
+        try {
+            String stmt = "Insert into user_auth(username,password,salt,role,deleted) values (?,?,?,?,?);";
+            
+            Connection con = new DatabaseConn().ConnectionEstablishment();
+            PreparedStatement ps = con.prepareStatement(stmt);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getSalt());
+            ps.setString(4, user.getUser_type().toString());
+            ps.setBoolean(1, user.getDeleted());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);

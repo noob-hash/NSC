@@ -73,7 +73,7 @@ public class UserAuth extends HttpServlet {
                     + request.getParameter("4") + request.getParameter("5") + request.getParameter("6") : "0";
 
             if (Integer.parseInt(OTP) == 256734) {
-                RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
+                RequestDispatcher dispacher = request.getRequestDispatcher("Pages/ResetPassword.html");
                 dispacher.forward(request, response);
 
             } else {
@@ -82,18 +82,18 @@ public class UserAuth extends HttpServlet {
                     HttpSession s = request.getSession(true);
                     s.setAttribute("Email", user.getPhone());
                     new EmailSender().EmailSpecifier(user.getEmail(), "One Time Password", "Your OTP is: 256734");
-                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
+                    RequestDispatcher dispacher = request.getRequestDispatcher("Pages/enterOTP.html");
                     dispacher.forward(request, response);
                 } else {
                     out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">There is no user with your email.</div>");
-                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
+                    RequestDispatcher dispacher = request.getRequestDispatcher("Pages/Registration.jsp");
                     dispacher.include(request, response);
                 }
             }
 
         }
-        if (page.equalsIgnoreCase("RegisterPage")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Registration.jsp");
+        if (page.equalsIgnoreCase("Register")) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Registration.jsp");
             dispatcher.include(request, response);
         }
     }
