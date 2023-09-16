@@ -34,7 +34,7 @@ public class UserAuth extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +50,7 @@ public class UserAuth extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        doPost(request,response);
+        doPost(request, response);
     }
 
     /**
@@ -66,12 +66,12 @@ public class UserAuth extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String page = request.getParameter("page");
-    if (page.equalsIgnoreCase("sendOTP")) {
+        if (page.equalsIgnoreCase("sendOTP")) {
             PrintWriter out = response.getWriter();
             Users user = new UserServices().GetUser(request.getParameter("email"));
-            String OTP = (request.getParameter("1") != null) ? request.getParameter("1") + request.getParameter("2") + request.getParameter("3") 
+            String OTP = (request.getParameter("1") != null) ? request.getParameter("1") + request.getParameter("2") + request.getParameter("3")
                     + request.getParameter("4") + request.getParameter("5") + request.getParameter("6") : "0";
-            
+
             if (Integer.parseInt(OTP) == 256734) {
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
                 dispacher.forward(request, response);
@@ -91,6 +91,10 @@ public class UserAuth extends HttpServlet {
                 }
             }
 
+        }
+        if (page.equalsIgnoreCase("RegisterPage")) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Registration.jsp");
+            dispatcher.include(request, response);
         }
     }
 

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class DatabaseConn {
     private Connection con = null;
     private int port = 3307;
-    private String dbName = "MadeInNepal";
+    private String dbName = "medinepal";
     // default username and password for mysql server is used in this case
     public DatabaseConn(){
         try {

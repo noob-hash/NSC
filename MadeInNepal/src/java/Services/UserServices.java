@@ -30,7 +30,7 @@ public class UserServices {
         Users user = null;
         try {
             Connection con = new DatabaseConn().ConnectionEstablishment();
-            String statement = "Select * from user where user_id = ? and deleted = '0'";
+            String statement = "Select * from user_auth where user_id = ? and deleted = '0'";
             PreparedStatement ps = con.prepareStatement(statement);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -47,7 +47,7 @@ public class UserServices {
         Users user = null;
         try {
             Connection con = new DatabaseConn().ConnectionEstablishment();
-            String statement = "Select * from user where phone = ? or email = ? and deleted = '0'";
+            String statement = "Select * from user_auth where phone = ? or email = ? and deleted = '0'";
             PreparedStatement ps = con.prepareStatement(statement);
             ps.setString(1, identifier);
             ps.setString(2, identifier);
