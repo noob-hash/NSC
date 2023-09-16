@@ -4,9 +4,17 @@
         <servlet-name>UserAuth</servlet-name>
         <servlet-class>Controllers.UserAuth</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PageController</servlet-name>
+        <servlet-class>Controllers.PageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserAuth</servlet-name>
         <url-pattern>/UserAuth</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PageController</servlet-name>
+        <url-pattern>/PageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

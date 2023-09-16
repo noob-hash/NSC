@@ -10,7 +10,7 @@ package Models;
  */
 public class Users {
     
-     public enum Role{G,O,I};
+    public enum Role{O,H,I};
 
      
     private int user_id;
@@ -19,10 +19,25 @@ public class Users {
     private String salt;
     private Role user_type;
     private boolean deleted;
+    private String email;
+    private String phone;
 
     public Users() {
     }
 
+    public Users(int user_id, String username, String password, String salt, Role user_type, boolean deleted, String email, String phone) {
+        this.user_id = user_id;
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+        this.user_type = user_type;
+        this.deleted = deleted;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    
+    
     public Users(int user_id, String username, String password, String salt, Role user_type, boolean deleted) {
         this.user_id = user_id;
         this.username = username;
@@ -86,6 +101,22 @@ public class Users {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
     

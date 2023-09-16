@@ -4,23 +4,18 @@
  */
 package Controllers;
 
-import Models.Users;
-import Services.EmailSender;
-import Services.UserServices;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Subin
  */
-public class UserAuth extends HttpServlet {
+public class PageController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -65,33 +60,8 @@ public class UserAuth extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String page = request.getParameter("page");
-    if (page.equalsIgnoreCase("sendOTP")) {
-            PrintWriter out = response.getWriter();
-            Users user = new UserServices().GetUser(request.getParameter("email"));
-            String OTP = (request.getParameter("1") != null) ? request.getParameter("1") + request.getParameter("2") + request.getParameter("3") 
-                    + request.getParameter("4") + request.getParameter("5") + request.getParameter("6") : "0";
-            
-            if (Integer.parseInt(OTP) == 256734) {
-                RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
-                dispacher.forward(request, response);
-
-            } else {
-                if (user != null) {
-
-                    HttpSession s = request.getSession(true);
-                    s.setAttribute("Email", user.getPhone());
-                    new EmailSender().EmailSpecifier(user.getEmail(), "One Time Password", "Your OTP is: 256734");
-                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
-                    dispacher.forward(request, response);
-                } else {
-                    out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">There is no user with your email.</div>");
-                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
-                    dispacher.include(request, response);
-                }
-            }
-
-        }
+        
+        
     }
 
     /**
