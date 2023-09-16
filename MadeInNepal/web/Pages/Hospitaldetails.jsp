@@ -114,7 +114,7 @@ Author : Subin --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
           "
         >
           <div>
-            <form
+            <form action="AppointmentController?action=makeAppointment" method="POST"
               class="row d-flex align-items-end border bg-white p-3 shadow rounded"
             >
             <input type="hidden" name="hospital_id">
