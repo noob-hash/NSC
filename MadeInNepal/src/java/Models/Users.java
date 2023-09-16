@@ -37,6 +37,13 @@ public class Users {
     }
 
     
+    public Users(String username, String password, String salt, Role user_type, boolean deleted) {
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+        this.user_type = user_type;
+        this.deleted = deleted;
+    }
     
     public Users(int user_id, String username, String password, String salt, Role user_type, boolean deleted) {
         this.user_id = user_id;
@@ -119,6 +126,9 @@ public class Users {
         this.phone = phone;
     }
     
-    
+    public boolean getDeleted() {
+        return deleted;
+    }
+
     
 }
