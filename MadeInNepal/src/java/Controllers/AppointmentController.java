@@ -5,10 +5,20 @@
  */
 package Controller;
 
+import Models.Appointment;
 import Models.User;
+import Models.User.Role;
+import Services.AppointmentService;
 import Services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +30,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author DELL
  */
-public class PageController extends HttpServlet {
+public class AppointmentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -65,32 +75,46 @@ public class PageController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String page = request.getParameter("page");
-        if (page.equalsIgnoreCase("login")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/LoginPage.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("home")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Home.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("register")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Registration.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("hospitals")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Hospitaldetails.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("profile")) {
-            HttpSession session = request.getSession(true);
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession(true);
 
-            String username = (String) session.getAttribute("username");
-            User user = new UserService().GetUser(username);
-            request.setAttribute("user", user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Profile.jsp");
-            dispatcher.include(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/404page.jsp");
+        if (action.equalsIgnoreCase("makeAppointment")) {
+            try {
+                //            LocalDate date, String address, String service, int hospital_id, int user_id
+                User user = new UserService().GetUser(session.getAttribute("username").toString());
+                int userId = user.getUserId();
+                String pattern = "yyyy-MM-dd";
+                LocalDate dates = ToLocalDate(request.getParameter("date"),pattern);
+                new AppointmentService().makeAppointment(dates, request.getParameter("address"), request.getParameter("service"), Integer.valueOf(request.getParameter("hospital_id")), userId);
+            } catch (SQLException ex) {
+                Logger.getLogger(AppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PageController?page=home");
             dispatcher.include(request, response);
         }
-
+        
+        if (action.equalsIgnoreCase("listAppointment")) {
+            List<Appointment> appointmentList =new ArrayList<>();
+            try {
+                User user = new UserService().GetUser(session.getAttribute("username").toString());
+                appointmentList = new AppointmentService().listAppointments(user.getUserId(), user.getUserType().equals(Role.H));
+            } catch (SQLException ex) {
+                Logger.getLogger(AppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("applintments", appointmentList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/AppointmentList.jsp");
+            dispatcher.include(request, response);
+        }
+    }
+    
+    public static LocalDate ToLocalDate(String dateString, String pattern) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            return LocalDate.parse(dateString, formatter);
+        } catch (Exception e) {
+            e.printStackTrace(); 
+            return null; 
+        }
     }
 
     /**
@@ -98,7 +122,7 @@ public class PageController extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
+     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>

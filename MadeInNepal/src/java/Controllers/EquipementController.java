@@ -5,10 +5,19 @@
  */
 package Controller;
 
+import Models.Equipments;
 import Models.User;
+import Services.EquipmentService;
 import Services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +29,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author DELL
  */
-public class PageController extends HttpServlet {
+public class EquipementController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +43,6 @@ public class PageController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +58,7 @@ public class PageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        doPost(request, response);
+        doPost(request,response);
     }
 
     /**
@@ -65,32 +73,34 @@ public class PageController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String page = request.getParameter("page");
-        if (page.equalsIgnoreCase("login")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/LoginPage.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("home")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Home.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("register")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Registration.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("hospitals")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Hospitaldetails.jsp");
-            dispatcher.include(request, response);
-        } else if (page.equalsIgnoreCase("profile")) {
-            HttpSession session = request.getSession(true);
+           String action = request.getParameter("action");
+        HttpSession session = request.getSession(true);
 
-            String username = (String) session.getAttribute("username");
-            User user = new UserService().GetUser(username);
-            request.setAttribute("user", user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/Profile.jsp");
-            dispatcher.include(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Pages/404page.jsp");
+        
+        
+        if (action.equalsIgnoreCase("listEquipment")) {
+            List<Equipments> appointmentList =new ArrayList<>();
+            try {
+                User user = new UserService().GetUser(session.getAttribute("username").toString());
+                appointmentList = new EquipmentService().listEquioment();
+            } catch (SQLException ex) {
+                Logger.getLogger(AppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("equipments", appointmentList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/EquipmentList.jsp");
             dispatcher.include(request, response);
         }
-
+    }
+    
+    public static LocalDate ToLocalDate(String dateString, String pattern) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            return LocalDate.parse(dateString, formatter);
+        } catch (Exception e) {
+            e.printStackTrace(); 
+            return null; 
+        }
+    
     }
 
     /**
@@ -102,5 +112,6 @@ public class PageController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }

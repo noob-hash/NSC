@@ -1,4 +1,4 @@
-package Controllers;
+package Controller;
 
 import java.security.SecureRandom;
 import javax.crypto.SecretKeyFactory;
