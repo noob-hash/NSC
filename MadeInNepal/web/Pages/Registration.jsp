@@ -175,7 +175,7 @@
     <script>
       // Select the <select> element
         const selectElement = document.getElementById('mySelect');
-
+ 
         // Select the License No and Address fields
         const licenseNoInput = document.getElementById('licenseNoInput');
         const addressInput = document.getElementById('addressInput');
