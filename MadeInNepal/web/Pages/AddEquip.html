@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Equipment</title>
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -39,10 +40,10 @@
       }
 
     </style>
-</head>
-<body>
+  </head>
 
-   <!-- ============================================================== -->
+  <body>
+    <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper container">
@@ -73,21 +74,125 @@
                   <a
                     class="nav-link"
                     href="#">Personnals</a>
+                 
              </ul>
- 
-             <div class="profile" style="width: 48px; height: 48px; border-radius: 100px; overflow: hidden;">
-              <img src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg" style="
-              width: 48px;
-                height: 48px;
-                object-fit: cover;
-                                            ">
-             </div>
             
           </nav>
         </div>
         </nav>
       </div>
 
-    
-</body>
+        
+      <!-- ============================================================== -->
+      <!-- end left sidebar -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- wrapper  -->
+      <!-- ============================================================== -->
+      <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+          <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                  
+               
+                  <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                          <a href="#" class="breadcrumb-link">MediNepal</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                          Equipments
+                        </li>
+                      </ol>
+                    </nav>
+                  </div>
+                  <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="width: 100%;"><h2 class="pageheader-title">
+                    Add Equipments
+                  </h2>
+                </div>
+               
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+              <form class="needs-validation" action="equipmentController?action=addEquipment">
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                    <label for="validationCustom01">Equipment name</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Enter equipment name" value="Mark" required>
+                  
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label for="validationCustom02">Quantity</label>
+                    <input type="text" class="form-control" id="validationCustom02" placeholder="Enter quantity" value="Otto" required>
+              
+                  </div>
+             
+                </div>
+             
+               
+                <button class="btn btn-primary" type="submit">Submit form</button>
+              </form>
+              
+             
+              
+            </div>
+          </div>
+          <!-- ============================================================== -->
+          <!-- footer -->
+          <!-- ============================================================== -->
+          
+
+
+          <!-- ============================================================== -->
+          <!-- end footer -->
+          <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Include DataTables jQuery from CDN -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- Include DataTables Bootstrap from CDN -->
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+  </body>
 </html>
