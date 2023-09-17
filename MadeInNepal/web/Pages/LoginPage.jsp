@@ -27,6 +27,40 @@
   </head>
   <body>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <div class="container-fluid">
+          <!-- logo -->
+          <a class="navbar-brand " href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <!-- naglinks and button -->
+          <div class="collapse navbar-collapse d-flex justify-content-center align-item-right" id="navbarSupportedContent">
+  
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+             </ul>
+  
+            <form class="d-flex">
+            
+              <button class="btn btn-success" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
       <div class="container">
         <div class="row py-5 mt-4 align-items-center">
           <!-- For Demo Purpose -->
@@ -42,7 +76,7 @@
   
           <!-- Registeration Form -->
           <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="">
+            <form action="${pageContext.request.contextPath}/UserAuth?action=login" method="Post">
               <div class="row">
                
   
@@ -69,7 +103,7 @@
     
                 <!-- Button to trigger the modal -->
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#myModal"
@@ -82,7 +116,7 @@
                 <div class="text-center w-auto">
                   <p class="text-muted font-weight-bold">
                     Haven't Registered?
-                    <a href="#" class="text-primary ml-2">Sign up</a>
+                    <a href="${pageContext.request.contextPath}/PageController?page=register" class="text-primary ml-2">Sign up</a>
                   </p>
                 </div>
               </div>
