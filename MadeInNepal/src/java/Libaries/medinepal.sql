@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 08:05 AM
+-- Host: localhost:3307
+-- Generation Time: Sep 17, 2023 at 04:17 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 7.3.33
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,56 +24,69 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `hospital_id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `appointment_id` int(10) NOT NULL,
+  `date` date NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `service` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctors`
+--
+
+CREATE TABLE `doctors` (
+  `doctor_id` int(6) NOT NULL,
+  `Name` varchar(10) NOT NULL,
+  `Speciality` varchar(50) NOT NULL,
+  `Avaibility` varchar(12) NOT NULL,
+  `hospital_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipment`
+--
+
+CREATE TABLE `equipment` (
+  `hospital_id` int(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `equipment_id` int(10) NOT NULL,
+  `rating` double NOT NULL,
+  `num_of_equipement` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hospital`
 --
 
 CREATE TABLE `hospital` (
   `user_id` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `phone` int(10) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `photo` varchar(100) NOT NULL,
-  `ispremium` tinyint(1) NOT NULL
+  `hospital_id` int(10) NOT NULL,
+  `overall_rating` double NOT NULL,
+  `address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `individual`
+-- Table structure for table `organization`
 --
 
-CREATE TABLE `individual` (
-  `user_id` int(10) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `phone` int(10) NOT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `photo` varchar(100) DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL,
-  `ispremium` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `individual`
---
-
-INSERT INTO `individual` (`user_id`, `name`, `phone`, `address`, `email`, `photo`, `deleted`, `ispremium`) VALUES
-(NULL, NULL, 0, NULL, NULL, NULL, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `suppliers`
---
-
-CREATE TABLE `suppliers` (
-  `user_id` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `phone` int(10) NOT NULL,
-  `photo` varchar(100) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL
+CREATE TABLE `organization` (
+  `licence_no` int(10) NOT NULL,
+  `Address` varchar(50) NOT NULL,
+  `user_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -96,26 +109,39 @@ CREATE TABLE `user_auth` (
 --
 
 --
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`appointment_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`doctor_id`),
+  ADD KEY `hospital_id` (`hospital_id`);
+
+--
+-- Indexes for table `equipment`
+--
+ALTER TABLE `equipment`
+  ADD PRIMARY KEY (`equipment_id`),
+  ADD KEY `hospital_id` (`hospital_id`);
+
+--
 -- Indexes for table `hospital`
 --
 ALTER TABLE `hospital`
-  ADD PRIMARY KEY (`phone`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`hospital_id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `individual`
+-- Indexes for table `organization`
 --
-ALTER TABLE `individual`
-  ADD PRIMARY KEY (`phone`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `user_id` (`user_id`,`name`);
-
---
--- Indexes for table `suppliers`
---
-ALTER TABLE `suppliers`
-  ADD PRIMARY KEY (`phone`),
-  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `organization`
+  ADD PRIMARY KEY (`licence_no`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user_auth`
@@ -128,10 +154,62 @@ ALTER TABLE `user_auth`
 --
 
 --
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `appointment_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `doctor_id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `equipment`
+--
+ALTER TABLE `equipment`
+  MODIFY `equipment_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user_auth`
 --
 ALTER TABLE `user_auth`
   MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`user_id`);
+
+--
+-- Constraints for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD CONSTRAINT `doctors_ibfk_1` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
+
+--
+-- Constraints for table `equipment`
+--
+ALTER TABLE `equipment`
+  ADD CONSTRAINT `equipment_ibfk_1` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
+
+--
+-- Constraints for table `hospital`
+--
+ALTER TABLE `hospital`
+  ADD CONSTRAINT `hospital_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`user_id`);
+
+--
+-- Constraints for table `organization`
+--
+ALTER TABLE `organization`
+  ADD CONSTRAINT `organization_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
